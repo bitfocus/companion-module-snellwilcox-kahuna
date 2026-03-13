@@ -1,12 +1,14 @@
-import { InstanceBase, runEntrypoint, InstanceStatus, SomeCompanionConfigField } from '@companion-module/base'
+import { InstanceBase, InstanceStatus, type SomeCompanionConfigField } from '@companion-module/base'
 import { GetConfigFields, type ModuleConfig } from './config.js'
 import { UpdateVariableDefinitions } from './variables.js'
 import { UpgradeScripts } from './upgrades.js'
 import { UpdateActions } from './actions.js'
 import { UpdateFeedbacks } from './feedbacks.js'
-import { UpdatePresets } from './presets.js'
+import type { InstanceBaseExt, KahunaTypes } from './types.js'
 
-export class ModuleInstance extends InstanceBase<ModuleConfig> {
+export { UpgradeScripts }
+
+export default class ModuleInstance extends InstanceBase<KahunaTypes> implements InstanceBaseExt {
 	config!: ModuleConfig // Setup in init()
 
 	constructor(internal: unknown) {
@@ -25,7 +27,7 @@ export class ModuleInstance extends InstanceBase<ModuleConfig> {
 	}
 	// When module gets deleted
 	async destroy(): Promise<void> {
-		this.log('debug', 'destroy')
+		this.log('debug', `destroy process: ${process.pid} id: ${this.id} label: ${this.label}`)
 	}
 
 	async configUpdated(config: ModuleConfig): Promise<void> {
@@ -38,20 +40,16 @@ export class ModuleInstance extends InstanceBase<ModuleConfig> {
 	}
 
 	updateActions(): void {
-		UpdateActions(this)
+		this.setActionDefinitions(UpdateActions(this))
 	}
 
 	updateFeedbacks(): void {
-		UpdateFeedbacks(this)
+		this.setFeedbackDefinitions(UpdateFeedbacks(this))
 	}
 
-	updatePresets(): void {
-		UpdatePresets(this)
-	}
+	updatePresets(): void {}
 
 	updateVariableDefinitions(): void {
 		UpdateVariableDefinitions(this)
 	}
 }
-
-runEntrypoint(ModuleInstance, UpgradeScripts)

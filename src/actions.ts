@@ -1,8 +1,21 @@
-import type { ModuleInstance } from './main.js'
+import type { CompanionActionDefinitions } from '@companion-module/base'
+import type Kahuna from './main.js'
 
-export function UpdateActions(self: ModuleInstance): void {
-	self.setActionDefinitions({
-		sample_action: {
+export enum ActionId {
+	Id = 'id',
+}
+
+export type ActionSchema = {
+	[ActionId.Id]: {
+		options: {
+			num: number
+		}
+	}
+}
+
+export function UpdateActions(_self: Kahuna): CompanionActionDefinitions<ActionSchema> {
+	return {
+		[ActionId.Id]: {
 			name: 'My First Action',
 			options: [
 				{
@@ -18,5 +31,5 @@ export function UpdateActions(self: ModuleInstance): void {
 				console.log('Hello world!', event.options.num)
 			},
 		},
-	})
+	}
 }

@@ -1,9 +1,7 @@
-import type { ModuleInstance } from './main.js'
+import type { JsonValue, CompanionVariableDefinitions } from '@companion-module/base'
+import type Kahuna from './main.js'
 
-export function UpdateVariableDefinitions(self: ModuleInstance): void {
-	self.setVariableDefinitions([
-		{ variableId: 'variable1', name: 'My first variable' },
-		{ variableId: 'variable2', name: 'My second variable' },
-		{ variableId: 'variable3', name: 'Another variable' },
-	])
+export function UpdateVariableDefinitions(self: Kahuna): void {
+	const variables: CompanionVariableDefinitions<Record<string, JsonValue>> = {}
+	self.setVariableDefinitions(variables)
 }

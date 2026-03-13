@@ -1,9 +1,23 @@
 import { combineRgb } from '@companion-module/base'
-import type { ModuleInstance } from './main.js'
+import type { CompanionFeedbackDefinitions } from '@companion-module/base'
+import type Kahuna from './main.js'
 
-export function UpdateFeedbacks(self: ModuleInstance): void {
-	self.setFeedbackDefinitions({
-		ChannelState: {
+export enum FeedbackId {
+	Id = 'id',
+}
+
+export type FeedbackSchema = {
+	[FeedbackId.Id]: {
+		type: 'boolean'
+		options: {
+			num: number
+		}
+	}
+}
+
+export function UpdateFeedbacks(_self: Kahuna): CompanionFeedbackDefinitions<FeedbackSchema> {
+	return {
+		[FeedbackId.Id]: {
 			name: 'Example Feedback',
 			type: 'boolean',
 			defaultStyle: {
@@ -29,5 +43,5 @@ export function UpdateFeedbacks(self: ModuleInstance): void {
 				}
 			},
 		},
-	})
+	}
 }

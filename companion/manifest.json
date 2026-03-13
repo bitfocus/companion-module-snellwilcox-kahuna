@@ -1,17 +1,18 @@
 {
 	"$schema": "../node_modules/@companion-module/base/assets/manifest.schema.json",
-	"id": "your-module-name",
-	"name": "your-module-name",
-	"shortname": "module-shortname",
-	"description": "A short one line description of your module",
+	"id": "snell-kahuna",
+	"name": "snell-kahuna",
+	"type": "connection",
+	"shortname": "Snell Kahuna",
+	"description": "Control the Snell & Wilcox Kahuna Production Switchers",
 	"version": "0.0.0",
 	"license": "MIT",
-	"repository": "git+https://github.com/bitfocus/companion-module-your-module-name.git",
-	"bugs": "https://github.com/bitfocus/companion-module-your-module-name/issues",
+	"repository": "git+https://github.com/bitfocus/companion-module-snell-kahuna.git",
+	"bugs": "https://github.com/bitfocus/companion-module-snell-kahuna/issues",
 	"maintainers": [
 		{
-			"name": "Your name",
-			"email": "Your email"
+			"name": "Phillip Ivan Pietruschka",
+			"email": "ivanpietruschka@gmail.com"
 		}
 	],
 	"runtime": {
@@ -21,7 +22,7 @@
 		"entrypoint": "../dist/main.js"
 	},
 	"legacyIds": [],
-	"manufacturer": "Your company",
-	"products": ["Your product"],
-	"keywords": []
+	"manufacturer": "Snell & Wilcox",
+	"products": ["Kahuna"],
+	"keywords": ["Production Switcher"]
 }
