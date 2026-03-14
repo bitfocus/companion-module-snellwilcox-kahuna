@@ -2,33 +2,56 @@ import type { CompanionActionDefinitions } from '@companion-module/base'
 import type Kahuna from './main.js'
 
 export enum ActionId {
-	Id = 'id',
+	TriggerMacro = 'trigger_macro',
 }
 
 export type ActionSchema = {
-	[ActionId.Id]: {
+	[ActionId.TriggerMacro]: {
 		options: {
-			num: number
+			project: number
+			macro: number
+			timeout: number
 		}
 	}
 }
 
-export function UpdateActions(_self: Kahuna): CompanionActionDefinitions<ActionSchema> {
+export function UpdateActions(self: Kahuna): CompanionActionDefinitions<ActionSchema> {
 	return {
-		[ActionId.Id]: {
-			name: 'My First Action',
+		[ActionId.TriggerMacro]: {
+			name: 'Trigger Macro',
 			options: [
 				{
-					id: 'num',
+					id: 'project',
 					type: 'number',
-					label: 'Test',
-					default: 5,
-					min: 0,
+					label: 'Project',
+					default: 1,
+					min: 1,
 					max: 100,
+					asInteger: true,
+				},
+				{
+					id: 'macro',
+					type: 'number',
+					label: 'Macro',
+					default: 1,
+					min: 1,
+					max: 999,
+					asInteger: true,
+				},
+				{
+					id: 'timeout',
+					type: 'number',
+					label: 'Timeout (mS)',
+					default: 2000,
+					min: 500,
+					max: Number.MAX_SAFE_INTEGER,
+					asInteger: true,
+					description: `Promise will reject after this interval.Should be longer than macro duration.`,
 				},
 			],
 			callback: async (event) => {
-				console.log('Hello world!', event.options.num)
+				const { project, macro, timeout } = event.options
+				await self.triggerMacro(project, macro, timeout)
 			},
 		},
 	}

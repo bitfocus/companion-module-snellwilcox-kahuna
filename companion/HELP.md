@@ -28,3 +28,15 @@ Written to interface with the first generation Kahuna Production Switchers. Comm
 | Delimiter 2       | 00              | 00              |
 | Delimiter Process | Do Nothing      | Do Nothing      |
 | Force Transmit    | 15              | 15              |
+
+### Actions
+
+- Trigger Macro
+
+### Value Feedbacks
+
+- Tally
+
+### Variables
+
+- Tally

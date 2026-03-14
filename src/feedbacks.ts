@@ -1,46 +1,34 @@
-import { combineRgb } from '@companion-module/base'
 import type { CompanionFeedbackDefinitions } from '@companion-module/base'
 import type Kahuna from './main.js'
 
 export enum FeedbackId {
-	Id = 'id',
+	Tally = 'tally',
 }
 
 export type FeedbackSchema = {
-	[FeedbackId.Id]: {
-		type: 'boolean'
+	[FeedbackId.Tally]: {
+		type: 'value'
 		options: {
-			num: number
+			info: never
 		}
 	}
 }
 
-export function UpdateFeedbacks(_self: Kahuna): CompanionFeedbackDefinitions<FeedbackSchema> {
+export function UpdateFeedbacks(self: Kahuna): CompanionFeedbackDefinitions<FeedbackSchema> {
 	return {
-		[FeedbackId.Id]: {
-			name: 'Example Feedback',
-			type: 'boolean',
-			defaultStyle: {
-				bgcolor: combineRgb(255, 0, 0),
-				color: combineRgb(0, 0, 0),
-			},
+		[FeedbackId.Tally]: {
+			name: 'Tally',
+			type: 'value',
 			options: [
 				{
-					id: 'num',
-					type: 'number',
-					label: 'Test',
-					default: 5,
-					min: 0,
-					max: 10,
+					type: 'static-text',
+					id: 'info',
+					label: '',
+					value: 'Returns current Tally Number',
 				},
 			],
-			callback: (feedback) => {
-				console.log('Hello world!', feedback.options.num)
-				if (Number(feedback.options.num) > 5) {
-					return true
-				} else {
-					return false
-				}
+			callback: () => {
+				return self.kahunaTally
 			},
 		},
 	}

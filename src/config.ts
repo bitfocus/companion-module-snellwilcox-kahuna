@@ -1,27 +1,37 @@
 import { Regex, type SomeCompanionConfigField } from '@companion-module/base'
 
 export type ModuleConfig = {
-	host: string
-	port: number
+	ip: string
+	cmdPort: number
+	tallyPort: number
 }
 
 export function GetConfigFields(): SomeCompanionConfigField[] {
 	return [
 		{
 			type: 'textinput',
-			id: 'host',
+			id: 'ip',
 			label: 'Target IP',
 			width: 8,
 			regex: Regex.IP,
 		},
 		{
 			type: 'number',
-			id: 'port',
-			label: 'Target Port',
+			id: 'cmdPort',
+			label: 'Command Port',
 			width: 4,
 			min: 1,
 			max: 65535,
-			default: 8000,
+			default: 4003,
+		},
+		{
+			type: 'number',
+			id: 'tallyPort',
+			label: 'Tally Port',
+			width: 4,
+			min: 1,
+			max: 65535,
+			default: 4004,
 		},
 	]
 }

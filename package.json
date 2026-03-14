@@ -24,7 +24,8 @@
 		"yarn": "^4"
 	},
 	"dependencies": {
-		"@companion-module/base": "~2.0.2"
+		"@companion-module/base": "~2.0.2",
+		"p-queue": "^9.1.0"
 	},
 	"devDependencies": {
 		"@companion-module/tools": "^3.0.0",
