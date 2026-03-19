@@ -19,7 +19,7 @@ export { UpgradeScripts }
 export default class ModuleInstance extends InstanceBase<KahunaTypes> implements InstanceBaseExt {
 	config!: ModuleConfig // Setup in init()
 	#kahuna!: KahunaPlugin
-	#queue = new PQueue({ concurrency: 1 })
+	#queue = new PQueue({ intervalCap: 1, interval: 10 })
 	#controller = new AbortController()
 
 	constructor(internal: unknown) {
@@ -29,7 +29,7 @@ export default class ModuleInstance extends InstanceBase<KahunaTypes> implements
 	async init(config: ModuleConfig): Promise<void> {
 		this.config = config
 
-		this.updateStatus(InstanceStatus.Ok)
+		this.updateStatus(InstanceStatus.Connecting)
 
 		this.updateActions() // export actions
 		this.updateFeedbacks() // export feedbacks
@@ -69,6 +69,7 @@ export default class ModuleInstance extends InstanceBase<KahunaTypes> implements
 
 	private async initKahuna(config: ModuleConfig): Promise<void> {
 		if (this.#kahuna) await this.destroyKahuna()
+		this.updateStatus(InstanceStatus.Connecting)
 		let cmdStatus: TCPStatuses = InstanceStatus.Disconnected
 		let tallyStatus: TCPStatuses = InstanceStatus.Disconnected
 
@@ -100,12 +101,15 @@ export default class ModuleInstance extends InstanceBase<KahunaTypes> implements
 		})
 		this.#kahuna.on('cmd_status', (status, message) => {
 			cmdStatus = status
+			this.log('info', `Command port connection status changed: ${status} ${message ? message : ''}`)
 			updateWorstStatus(message)
 		})
 		this.#kahuna.on('tally_status', (status, message) => {
 			tallyStatus = status
+			this.log('info', `Tally port connection status changed: ${status} ${message ? message : ''}`)
 			updateWorstStatus(message)
 		})
+		await this.#kahuna.start()
 	}
 
 	/**
@@ -191,5 +195,6 @@ export default class ModuleInstance extends InstanceBase<KahunaTypes> implements
 
 	private updateVariableDefinitions(): void {
 		UpdateVariableDefinitions(this)
+		this.setVariableValues({ tallyNumber: 0 })
 	}
 }
