@@ -1,5 +1,5 @@
 {
-	"name": "snell-kahuna",
+	"name": "snellwilcox-kahuna",
 	"version": "0.1.0",
 	"main": "dist/main.js",
 	"type": "module",
@@ -17,14 +17,14 @@
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/bitfocus/companion-module-snell-kahuna.git"
+		"url": "git+https://github.com/bitfocus/companion-module-snellwilcox-kahuna.git"
 	},
 	"engines": {
 		"node": "^22.20",
 		"yarn": "^4"
 	},
 	"dependencies": {
-		"@companion-module/base": "~2.0.2",
+		"@companion-module/base": "~2.0.3",
 		"p-queue": "^9.1.0"
 	},
 	"devDependencies": {

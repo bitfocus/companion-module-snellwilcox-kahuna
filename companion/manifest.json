@@ -1,14 +1,14 @@
 {
 	"$schema": "../node_modules/@companion-module/base/assets/manifest.schema.json",
-	"id": "snell-kahuna",
-	"name": "snell-kahuna",
+	"id": "snellwilcox-kahuna",
+	"name": "snellwilcox-kahuna",
 	"type": "connection",
-	"shortname": "Snell Kahuna",
+	"shortname": "Snell & Wilcox Kahuna",
 	"description": "Control the Snell & Wilcox Kahuna Production Switchers",
 	"version": "0.0.0",
 	"license": "MIT",
-	"repository": "git+https://github.com/bitfocus/companion-module-snell-kahuna.git",
-	"bugs": "https://github.com/bitfocus/companion-module-snell-kahuna/issues",
+	"repository": "git+https://github.com/bitfocus/companion-module-snellwilcox-kahuna.git",
+	"bugs": "https://github.com/bitfocus/companion-module-snellwilcox-kahuna/issues",
 	"maintainers": [
 		{
 			"name": "Phillip Ivan Pietruschka",

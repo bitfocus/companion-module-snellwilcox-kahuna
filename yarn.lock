@@ -5,13 +5,13 @@ __metadata:
   version: 8
   cacheKey: 10c0
 
-"@companion-module/base@npm:~2.0.2":
-  version: 2.0.2
-  resolution: "@companion-module/base@npm:2.0.2"
+"@companion-module/base@npm:~2.0.3":
+  version: 2.0.3
+  resolution: "@companion-module/base@npm:2.0.3"
   dependencies:
     colord: "npm:^2.9.3"
     tslib: "npm:^2.8.1"
-  checksum: 10c0/2224ec9015e8c61d105509a9ff3e2fe0751dd0f69a72dd40be521a95007ea13b7cc465eeca293240061123668b398f8f26aa63bdd010fb9b4ef5ce2070391347
+  checksum: 10c0/a6b3be873fbc52e9a842cebe9201e670df1c79655975678aefb045d6b83e76ec8be77a507136e28153aca0cc5dab19dcf6c138c0eeeb365c1ada609c28b00ab8
   languageName: node
   linkType: hard
 
@@ -2615,11 +2615,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"snell-kahuna@workspace:.":
+"snellwilcox-kahuna@workspace:.":
   version: 0.0.0-use.local
-  resolution: "snell-kahuna@workspace:."
+  resolution: "snellwilcox-kahuna@workspace:."
   dependencies:
-    "@companion-module/base": "npm:~2.0.2"
+    "@companion-module/base": "npm:~2.0.3"
     "@companion-module/tools": "npm:^3.0.0"
     "@types/node": "npm:^22.19.15"
     eslint: "npm:^9.39.4"
