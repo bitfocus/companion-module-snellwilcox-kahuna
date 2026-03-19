@@ -396,7 +396,7 @@ export class KahunaPlugin extends EventEmitter<KahunaPluginEvents> {
 
 		if (tallyByte !== this.tallyNumber) {
 			this.tallyNumber = tallyByte
-			this.emit('tally_changed', this.tallyNumber - 1)
+			this.emit('tally_changed', this.tallyNumber)
 			this.log.debug(`Tally Changed to ${this.tallyNumber}`)
 		}
 	}
