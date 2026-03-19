@@ -46,7 +46,7 @@ export function UpdateActions(self: Kahuna): CompanionActionDefinitions<ActionSc
 					min: 500,
 					max: Number.MAX_SAFE_INTEGER,
 					asInteger: true,
-					description: `Promise will reject after this interval.Should be longer than macro duration.`,
+					description: `Should be longer than macro duration. If macro isn't complete within this time, action will throw an error.`,
 				},
 			],
 			callback: async (event) => {
