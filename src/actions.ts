@@ -26,7 +26,7 @@ export function UpdateActions(self: Kahuna): CompanionActionDefinitions<ActionSc
 					label: 'Project',
 					default: 1,
 					min: 1,
-					max: 100,
+					max: 99,
 					asInteger: true,
 				},
 				{
@@ -42,7 +42,7 @@ export function UpdateActions(self: Kahuna): CompanionActionDefinitions<ActionSc
 					id: 'timeout',
 					type: 'number',
 					label: 'Timeout (mS)',
-					default: 2000,
+					default: 5000,
 					min: 500,
 					max: Number.MAX_SAFE_INTEGER,
 					asInteger: true,
