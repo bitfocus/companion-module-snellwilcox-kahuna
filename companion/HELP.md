@@ -40,3 +40,5 @@ Written to interface with the first generation Kahuna Production Switchers. Comm
 ### Variables
 
 - Tally
+
+Tally feedback and variable report the most recently tallied crosspoint. Does not support multiple tallies.
