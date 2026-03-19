@@ -24,7 +24,7 @@ export function UpdateFeedbacks(self: Kahuna): CompanionFeedbackDefinitions<Feed
 					type: 'static-text',
 					id: 'info',
 					label: '',
-					value: 'Returns current Tally Number',
+					value: 'Returns the most recent tally number. Does not support multiple tallies.',
 				},
 			],
 			callback: () => {
