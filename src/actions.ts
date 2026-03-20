@@ -10,7 +10,6 @@ export type ActionSchema = {
 		options: {
 			project: number
 			macro: number
-			timeout: number
 		}
 	}
 }
@@ -38,20 +37,10 @@ export function UpdateActions(self: Kahuna): CompanionActionDefinitions<ActionSc
 					max: 999,
 					asInteger: true,
 				},
-				{
-					id: 'timeout',
-					type: 'number',
-					label: 'Timeout (mS)',
-					default: 5000,
-					min: 500,
-					max: Number.MAX_SAFE_INTEGER,
-					asInteger: true,
-					description: `Should be longer than macro duration. If macro isn't complete within this time, action will throw an error.`,
-				},
 			],
 			callback: async (event) => {
-				const { project, macro, timeout } = event.options
-				await self.triggerMacro(project, macro, timeout)
+				const { project, macro } = event.options
+				await self.triggerMacro(project, macro)
 			},
 		},
 	}

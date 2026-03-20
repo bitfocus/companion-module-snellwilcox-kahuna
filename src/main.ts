@@ -124,7 +124,7 @@ export default class ModuleInstance extends InstanceBase<KahunaTypes> implements
 	 * @param macro     - Three-digit macro number (integer).
 	 * @param timeoutMs - Maximum time to wait for macro_complete acknowledgement.
 	 */
-	public async triggerMacro(project: number, macro: number, timeoutMs: number): Promise<void> {
+	public async triggerMacro(project: number, macro: number, timeoutMs: number = 5000): Promise<void> {
 		if (!this.#kahuna) {
 			return Promise.reject(new Error('Kahuna is not initialised — call initKahuna() first'))
 		}
