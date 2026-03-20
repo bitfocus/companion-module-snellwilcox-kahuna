@@ -7,6 +7,6 @@ export type VariablesSchema = {
 
 export function UpdateVariableDefinitions(self: Kahuna): void {
 	const variables: Partial<CompanionVariableDefinitions<VariablesSchema>> = {}
-	variables['tallyNumber'] = { name: 'Kahuna Tally Number' }
+	variables['tallyNumber'] = { name: 'Most recent tally' }
 	self.setVariableDefinitions(variables as CompanionVariableDefinitions<VariablesSchema>)
 }
