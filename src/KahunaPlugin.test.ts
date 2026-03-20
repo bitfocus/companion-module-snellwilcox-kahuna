@@ -400,7 +400,7 @@ describe('tally stream parsing', () => {
 		;(plugin as unknown as { receivedTallyData(b: Buffer): void }).receivedTallyData(buf)
 	}
 
-	it('emits tally_changed with the correct zero-indexed source number', () => {
+	it('emits tally_changed with the correct source number', () => {
 		const plugin = new KahunaPlugin()
 		plugin.configure(VALID_CONFIG, makeLogger())
 
@@ -408,7 +408,7 @@ describe('tally stream parsing', () => {
 		plugin.on('tally_changed', changed)
 
 		feedTally(plugin, makeTallyBuffer(3))
-		expect(changed).toHaveBeenCalledWith(2) // 3 - 1
+		expect(changed).toHaveBeenCalledWith(3) // No longer 0based
 	})
 
 	it('does not emit tally_changed when the tally value is unchanged', () => {
@@ -437,8 +437,8 @@ describe('tally stream parsing', () => {
 		feedTally(plugin, Buffer.concat([makeTallyField(1), makeTallyField(2), Buffer.from([0x80])]))
 
 		expect(changed).toHaveBeenCalledTimes(2)
-		expect(changed).toHaveBeenNthCalledWith(1, 0)
-		expect(changed).toHaveBeenNthCalledWith(2, 1)
+		expect(changed).toHaveBeenNthCalledWith(1, 1)
+		expect(changed).toHaveBeenNthCalledWith(2, 2)
 	})
 
 	it('does not emit tally_changed for a non-0x84 field', () => {
@@ -485,7 +485,7 @@ describe('tally stream parsing', () => {
 		const junk = Buffer.from([0x01, 0x02, 0x03])
 		feedTally(plugin, Buffer.concat([junk, makeTallyBuffer(7)]))
 
-		expect(changed).toHaveBeenCalledWith(6)
+		expect(changed).toHaveBeenCalledWith(7)
 	})
 
 	it('handles a 0xD2 0xD2 heartbeat without throwing or emitting tally_changed', () => {
@@ -514,7 +514,7 @@ describe('tally stream parsing', () => {
 
 		// Second chunk: remaining bytes + terminator to signal field completion.
 		feedTally(plugin, Buffer.concat([field.subarray(10), Buffer.from([0x80])]))
-		expect(changed).toHaveBeenCalledWith(3)
+		expect(changed).toHaveBeenCalledWith(4)
 	})
 
 	it('resets the accumulation buffer and logs an error when it exceeds 1000 bytes', () => {
@@ -542,7 +542,7 @@ describe('tally stream parsing', () => {
 		feedTally(plugin, Buffer.alloc(1000, 0x80)) // trigger overflow reset
 		feedTally(plugin, makeTallyBuffer(2)) // should now process cleanly
 
-		expect(changed).toHaveBeenCalledWith(1)
+		expect(changed).toHaveBeenCalledWith(2)
 	})
 })
 
