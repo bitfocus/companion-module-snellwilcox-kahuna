@@ -259,7 +259,6 @@ export class KahunaPlugin extends EventEmitter<KahunaPluginEvents> {
 	/**
 	 * Process data arriving on the command socket.
 	 * The mixer replies 'OK' or 'ERROR...' to each command stage.
-	 * Replaces C++ CKahunaPlugin::receivedCmdDataCallback().
 	 */
 	private receivedCmdData(buf: Buffer): void {
 		const response = buf.toString('ascii').trim()
@@ -310,7 +309,6 @@ export class KahunaPlugin extends EventEmitter<KahunaPluginEvents> {
 
 	/**
 	 * Accumulate incoming tally bytes and extract complete fields.
-	 * Replaces C++ CKahunaPlugin::receivedTallyDataCallback().
 	 *
 	 * The Kahuna sends a continuous binary stream.  Fields are bounded by
 	 * control bytes (>= 0x80); data bytes within a field are all < 0x80.
@@ -379,11 +377,6 @@ export class KahunaPlugin extends EventEmitter<KahunaPluginEvents> {
 	 * Inspect a complete tally field and emit 'tally_changed' if the value
 	 * has changed.  Only 0x84 messages carry tally data; all others are
 	 * silently discarded.
-	 * Replaces C++ CKahunaPlugin::processField().
-	 *
-	 * Does it send 0 when nothing is on tally?
-	 * Does it send a new source index replacing the old one, or do multiple 0x84 messages arrive simultaneously for multiple sources?
-	 *
 	 */
 	private processField(field: Buffer): void {
 		const firstByte = field[0]
@@ -405,7 +398,6 @@ export class KahunaPlugin extends EventEmitter<KahunaPluginEvents> {
 
 	/**
 	 * Build an internal MacroMessage (LOAD → TRIGGER) for KahunaCommand.
-	 * Mirrors the C++ MacroMessage::loadMacro() + triggerMacro() call pair.
 	 */
 	private buildMacroMessage(projectId: number, macroId: number): MacroMessage {
 		const stages: MacroStage[] = [MacroStage.LOAD, MacroStage.TRIGGER]
