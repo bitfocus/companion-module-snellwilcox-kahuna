@@ -1,6 +1,8 @@
 ## Snell & Wilcox Kahuna
 
-Written to interface with the first generation Kahuna Production Switchers. Comms via Moxa NPort to the switchers serial ports.
+Written to interface with the first generation Kahuna Production Switchers. Comms via Moxa NPort to the switchers serial ports. Requires 2 ports.
+
+### Tested Moxa Configuration
 
 | Setting      | Macro Serial | Tally Serial |
 | ------------ | ------------ | ------------ |
