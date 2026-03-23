@@ -33,7 +33,7 @@
 import { EventEmitter } from 'node:events'
 import { type ModuleLogger, TCPHelper, type TCPStatuses } from '@companion-module/base'
 
-import { KahunaCommand } from './KahunaCommand.js'
+import { KahunaCommand } from './kahuna_command.js'
 import { MacroStage, type KahunaConfig, type MacroMessage } from './kahuna.types.js'
 
 // ─── Event interface ──────────────────────────────────────────────────────────

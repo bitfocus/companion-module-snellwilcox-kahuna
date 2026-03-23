@@ -11,7 +11,7 @@ import { UpgradeScripts } from './upgrades.js'
 import { UpdateActions } from './actions.js'
 import { UpdateFeedbacks, FeedbackId } from './feedbacks.js'
 import type { InstanceBaseExt, KahunaTypes } from './types.js'
-import { KahunaPlugin } from './KahunaPlugin.js'
+import { KahunaPlugin } from './kahuna_plugin.js'
 import PQueue from 'p-queue'
 
 export { UpgradeScripts }

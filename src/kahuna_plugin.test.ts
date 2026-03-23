@@ -12,8 +12,8 @@
  */
 
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { KahunaPlugin } from './KahunaPlugin.js'
-import { KahunaCommand } from './KahunaCommand.js'
+import { KahunaPlugin } from './kahuna_plugin.js'
+import { KahunaCommand } from './kahuna_command.js'
 import { MacroStage, type KahunaConfig, type MacroMessage } from './kahuna.types.js'
 
 // ─── Mock TCPHelper ───────────────────────────────────────────────────────────

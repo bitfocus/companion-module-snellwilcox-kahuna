@@ -6,7 +6,7 @@
  */
 
 import { describe, it, expect } from 'vitest'
-import { KahunaCommand } from './KahunaCommand.js'
+import { KahunaCommand } from './kahuna_command.js'
 import { MacroStage, type MacroMessage } from './kahuna.types.js'
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
