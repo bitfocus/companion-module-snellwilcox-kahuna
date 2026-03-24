@@ -1,4 +1,4 @@
-# companion-module-snell-kahuna
+# companion-module-snellwillcox-kahuna
 
 See [HELP.md](./companion/HELP.md) and [LICENSE](./LICENSE)
 
