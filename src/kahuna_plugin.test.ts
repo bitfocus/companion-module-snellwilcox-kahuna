@@ -276,25 +276,25 @@ describe('configure — port validation', () => {
 // ─── requestTally() ───────────────────────────────────────────────────────────
 
 describe('requestTally', () => {
-	it('returns -1 before any tally data has been received (tallyNumber starts at 0)', () => {
+	it('returns 0 before any tally data has been received (tallyNumber starts at 1)', () => {
 		const plugin = new KahunaPlugin()
 		plugin.configure(VALID_CONFIG, makeLogger())
-		expect(plugin.requestTally()).toBe(-1)
+		expect(plugin.requestTally()).toBe(0)
 	})
 
-	it('returns the most recently received tally number minus 1', () => {
+	it('returns the most recently received tally number', () => {
 		const plugin = new KahunaPlugin()
 		plugin.configure(VALID_CONFIG, makeLogger())
 		// Directly set internal tally state to simulate a received tally.
 		;(plugin as unknown as { tallyNumber: number }).tallyNumber = 5
-		expect(plugin.requestTally()).toBe(4)
+		expect(plugin.requestTally()).toBe(5)
 	})
 
-	it('returns 0 when the device reports tally source 1', () => {
+	it('returns 1 when the device reports tally source 1', () => {
 		const plugin = new KahunaPlugin()
 		plugin.configure(VALID_CONFIG, makeLogger())
 		;(plugin as unknown as { tallyNumber: number }).tallyNumber = 1
-		expect(plugin.requestTally()).toBe(0)
+		expect(plugin.requestTally()).toBe(1)
 	})
 })
 
