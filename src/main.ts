@@ -48,6 +48,7 @@ export default class ModuleInstance extends InstanceBase<KahunaTypes> implements
 	async configUpdated(config: ModuleConfig): Promise<void> {
 		this.#controller.abort()
 		this.#queue.clear()
+		await this.#queue.onIdle()
 		this.#controller = new AbortController()
 		this.config = config
 		await this.initKahuna(config)
