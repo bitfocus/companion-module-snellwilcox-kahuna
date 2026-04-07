@@ -183,8 +183,8 @@ export class KahunaPlugin extends EventEmitter<KahunaPluginEvents> {
 	 * The mixer streams tally data continuously so this is always current.
 	 */
 	public requestTally(): number {
-		this.log.info(`Tally requested, returning: ${this.tallyNumber - 1}`)
-		return this.tallyNumber - 1
+		this.log.info(`Tally requested, returning: ${this.tallyNumber}`)
+		return this.tallyNumber
 	}
 
 	/**
