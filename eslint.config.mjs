@@ -10,7 +10,7 @@ export default [
 		files: ['vitest.config.ts', '**/*.test.ts', '**/*.spec.ts'],
 		languageOptions: {
 			parserOptions: {
-				project: ['./tsconfig.json', './tsconfig.node.json'],
+				project: ['./tsconfig.json'],
 			},
 		},
 		rules: {
