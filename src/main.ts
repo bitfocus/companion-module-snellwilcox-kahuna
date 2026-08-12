@@ -125,7 +125,12 @@ export default class ModuleInstance extends InstanceBase<KahunaTypes> implements
 	 * @param macro     - Three-digit macro number (integer).
 	 * @param timeoutMs - Maximum time to wait for macro_complete acknowledgement.
 	 */
-	public async triggerMacro(project: number, macro: number, timeoutMs: number = 5000): Promise<void> {
+	public async triggerMacro(
+		project: number,
+		macro: number,
+		timeoutMs: number = 5000,
+		signal: AbortSignal,
+	): Promise<void> {
 		if (!this.#kahuna) {
 			return Promise.reject(new Error('Kahuna is not initialised — call initKahuna() first'))
 		}
@@ -133,6 +138,8 @@ export default class ModuleInstance extends InstanceBase<KahunaTypes> implements
 		// Capture the reference so the queue task and event handler close over
 		// a stable value even if initKahuna() is called again mid-flight.
 		const kahuna = this.#kahuna
+
+		const combinedSignal = AbortSignal.any([signal, this.#controller.signal])
 
 		await this.#queue.add(
 			async ({ signal }) => {
@@ -173,7 +180,7 @@ export default class ModuleInstance extends InstanceBase<KahunaTypes> implements
 					}
 				})
 			},
-			{ signal: this.#controller.signal },
+			{ signal: combinedSignal },
 		)
 	}
 

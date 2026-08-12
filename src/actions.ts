@@ -38,9 +38,9 @@ export function UpdateActions(self: Kahuna): CompanionActionDefinitions<ActionSc
 					asInteger: true,
 				},
 			],
-			callback: async (event) => {
+			callback: async (event, context) => {
 				const { project, macro } = event.options
-				await self.triggerMacro(project, macro)
+				await self.triggerMacro(project, macro, 5000, context.signal)
 			},
 		},
 	}
